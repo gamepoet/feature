@@ -1,0 +1,4 @@
+#!/bin/bash
+cd `dirname "$0"`/..
+cd build
+watchexec -w .. -c 'cmake --build . && ./test_runner'

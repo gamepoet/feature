@@ -24,13 +24,13 @@ typedef struct feature_lib_config_t {
   // The list of boolean enabled values for each overridden feature. Count should be `feature_override_count`.
   const bool* feature_override_values;
 
-  // The function to use when an assertion fails
+  // The function to use when an assertion fails. The default implementation prints to stderr and terminates.
   void (*assert)(const char* file, int line, const char* func, const char* expression, const char* message);
 
-  // The function to use to allocate memory
+  // The function to use to allocate memory. The default implementation is malloc().
   void* (*alloc)(size_t size, void* user_data, const char* file, int line, const char* func);
 
-  // The function to use to free memory
+  // The function to use to free memory. The default implementation is free().
   void (*free)(void* ptr, void* user_data, const char* file, int line, const char* func);
 
   // Opaque data passed to the alloc and free functions.

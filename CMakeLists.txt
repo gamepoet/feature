@@ -37,12 +37,24 @@ endif()
 
 # test app
 if (FEATURE_BUILD_TESTS)
+  include(FetchContent)
+  set(FETCHCONTENT_QUIET OFF)
+  FetchContent_Declare(
+    catch2
+    GIT_REPOSITORY https://github.com/catchorg/Catch2
+    GIT_TAG v2.5.0
+  )
+  FetchContent_GetProperties(catch2)
+  if (NOT catch2_POPULATED)
+    FetchContent_Populate(catch2)
+  endif()
+
   add_executable(
     test_runner
-    spec/catch.hpp
     spec/main.cpp
     spec/feature_spec.cpp
   )
+  target_include_directories(test_runner PRIVATE ${catch2_SOURCE_DIR}/single_include/catch2)
   target_compile_features(test_runner PRIVATE cxx_std_11)
   target_link_libraries(test_runner feature)
   target_compile_options(

@@ -63,7 +63,7 @@ if (FEATURE_BUILD_TESTS)
     $<$<CXX_COMPILER_ID:AppleClang>:-Wall -Wextra -Wpedantic -Wno-unused-parameter>
     $<$<CXX_COMPILER_ID:MSVC>:/W4 /wd4100>
   )
-  if (FORENSICS_COVERAGE)
+  if (FEATURE_COVERAGE)
     target_compile_options(test_runner PRIVATE $<$<CXX_COMPILER_ID:AppleClang>:--coverage>)
     if (CMAKE_CXX_COMPILER_ID STREQUAL "AppleClang")
       set_target_properties(test_runner PROPERTIES LINK_FLAGS --coverage)

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.11)
 project(feature LANGUAGES C CXX)
 
 option(FEATURE_BUILD_TESTS "Build tests" OFF)
